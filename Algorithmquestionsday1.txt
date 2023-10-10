@@ -1,0 +1,1766 @@
+1. Check Two String which are reverse of each other or not.
+
+import java.util.*;
+public class HelloWorld{
+
+       public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the first string: ");
+        String str1 = scanner.nextLine();
+
+        System.out.print("Enter the second string: ");
+        String str2 = scanner.nextLine();
+
+        boolean areReverse = areStringsReverse(str1, str2);
+
+        if (areReverse) {
+            System.out.println("The strings are reverse of each other.");
+        } else {
+            System.out.println("The strings are not reverse of each other.");
+        }
+    }
+
+    public static boolean areStringsReverse(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        int length = str1.length();
+        for (int i = 0; i < length; i++) {
+            if (str1.charAt(i) != str2.charAt(length - 1 - i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+------------------------------------------------------------------------------------------------------------
+
+2. Find the Smallest Sum of consecutive Number from given Array
+
+import java.util.Scanner;
+
+public class SmallestConsecutiveSum {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+
+        int[] numbers = new int[size];
+
+        System.out.println("Enter the elements of the array:");
+
+        for (int i = 0; i < size; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        int smallestSum = findSmallestConsecutiveSum(numbers);
+
+        System.out.println("Smallest sum of consecutive numbers: " + smallestSum);
+    }
+
+    public static int findSmallestConsecutiveSum(int[] arr) {
+        if (arr.length == 0) {
+            return 0; 
+        }
+
+        int currentSum = arr[0];
+        int smallestSum = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            currentSum = Math.min(arr[i], currentSum + arr[i]);
+            smallestSum = Math.min(smallestSum, currentSum);
+        }
+
+        return smallestSum;
+    }
+}
+
+------------------------------------------------------------------------------------------------------------
+
+3. Find the Power without using math.pow function.
+
+import java.util.Scanner;
+
+public class PowerWithoutMathPow {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the base number: ");
+        double base = scanner.nextDouble();
+        System.out.print("Enter the exponent: ");
+        int exponent = scanner.nextInt();
+        double result = calculatePower(base, exponent);
+        System.out.println(base + " raised to the power " + exponent + " is " + result);
+    }
+
+    public static double calculatePower(double base, int exponent) {
+        if (exponent == 0) {
+            return 1; 
+        }
+        double result = 1;
+        if (exponent > 0) {
+            for (int i = 0; i < exponent; i++) {
+                result *= base;
+            }
+        } else {
+            for (int i = 0; i < -exponent; i++) {
+                result /= base;
+            }
+        }
+
+        return result;
+    }
+}
+-------------------------------------------------------------------------------------------------------
+4. Find the negative Power without using math.pow function.Reverse the String with and without 
+recursion
+
+import java.util.Scanner;
+
+public class NegativePowerWithoutMathPow {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the base number: ");
+        double base = scanner.nextDouble();
+        System.out.print("Enter the negative exponent: ");
+        int exponent = scanner.nextInt();
+        double result = calculateNegativePower(base, exponent);
+        System.out.println(base + " raised to the power " + exponent + " is " + result);
+        scanner.close();
+    }
+    public static double calculateNegativePower(double base, int exponent) {
+        if (exponent == 0) {
+            return 1; 
+        }
+        double result = 1;
+        if (exponent < 0) {
+            exponent = -exponent;
+            for (int i = 0; i < exponent; i++) {
+                result *= base;
+            }
+            result = 1 / result;
+        }
+        return result;
+    }
+}
+
+
+import java.util.Scanner;
+public class StringReversal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+        String reversedStringIterative = reverseStringIteratively(inputString);
+        System.out.println("Reversed string (Iterative): " + reversedStringIterative);
+        String reversedStringRecursive = reverseStringRecursively(inputString);
+        System.out.println("Reversed string (Recursive): " + reversedStringRecursive);
+    }
+    public static String reverseStringIteratively(String str) {
+        StringBuilder reversed = new StringBuilder();
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed.append(str.charAt(i));
+        }
+        return reversed.toString();
+    }
+    public static String reverseStringRecursively(String str) {
+        if (str.isEmpty()) {
+            return str;
+        }
+        return reverseStringRecursively(str.substring(1)) + str.charAt(0);
+    }
+}
+------------------------------------------------------------------------------------------------------------
+5. Find the unique Character in the String
+import java.util.Scanner;
+public class IndexOfExample {
+   public static void main(String args[]) {
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Enter the required String: ");
+      String str = sc.next();
+      System.out.println("Enter the required character: ");
+      char ch = sc.next().toCharArray()[0];
+      int i = str.indexOf(ch);
+      if(i!=-1) {
+         System.out.println("Sting contains the specified character");
+      } else {
+         System.out.println("String doesn’t contain the specified character");
+      }
+   }
+}
+------------------------------------------------------------------------------------------------------------
+6. Print the repeated characters in a String (just print characters)
+7. How many times a particular character is repeated in a string(print count for each character)
+import java.util.*;
+
+public class FindDuplicateCharacters {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String str = scanner.nextLine();
+        printDuplicates(str);
+    }
+
+    public static void printDuplicates(String str) {
+        int len = str.length();
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        String sortedStr = new String(chars);
+        System.out.println("Duplicate characters in the string:");
+        for (int i = 0; i < len; i++) {
+            int count = 1;
+            while (i < len - 1 && sortedStr.charAt(i) == sortedStr.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+            if (count > 1) {
+                System.out.println(sortedStr.charAt(i) + ", count = " + count);
+            }
+        }
+    }
+}
+------------------------------------------------------------------------------------------------------
+8. Count the no of vowels and constants in a string
+import java.util.Scanner;
+
+public class CountVowelsConsonants {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine().toLowerCase(); 
+        int vowelCount = 0;
+        int consonantCount = 0;
+        for (int i = 0; i < inputString.length(); i++) {
+            char ch = inputString.charAt(i);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowelCount++;
+            } else if (Character.isLetter(ch)) {
+                consonantCount++;
+            }
+        }
+        System.out.println("Number of vowels: " + vowelCount);
+        System.out.println("Number of consonants: " + consonantCount);
+    }
+}
+--------------------------------------------------------------------------------------------------------
+9. Convert a String into integer?
+import java.util.Scanner;
+
+public class StringToIntegerConversion {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter an integer as a string: ");
+        String inputString = scanner.nextLine();
+        try {
+            int intValue1 = Integer.parseInt(inputString);
+            System.out.println("Converted integer (parseInt): " + intValue1);
+            int intValue2 = Integer.valueOf(inputString);
+            System.out.println("Converted integer (valueOf): " + intValue2);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid integer string.");
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------
+10. Write a program to find the difference between equals and ==
+public class EqualsVsDoubleEquals {
+    public static void main(String[] args) {
+        String str1 = new String("Hello");
+        String str2 = new String("Hello");
+        String str3 = str1;
+        boolean equalsComparison = str1.equals(str2); 
+        System.out.println("Using equals(): str1.equals(str2) is " + equalsComparison);
+        boolean doubleEqualsComparison = str1 == str2; 
+        System.out.println("Using ==: str1 == str2 is " + doubleEqualsComparison);
+        boolean referenceComparison = str1 == str3; 
+        System.out.println("Using ==: str1 == str3 is " + referenceComparison);
+    }
+}
+---------------------------------------------------------------------------------------------
+11. How to remove characters from the first String which are present in the second String?
+import java.util.Scanner;
+
+public class RemoveCharactersFromString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the first string: ");
+        String firstString = scanner.nextLine();
+        System.out.print("Enter the second string: ");
+        String secondString = scanner.nextLine();
+        String result = removeCharacters(firstString, secondString);
+        System.out.println("Result after removing characters: " + result);
+    }
+
+    public static String removeCharacters(String str1, String str2) {
+        StringBuilder result = new StringBuilder();
+        for (char ch : str1.toCharArray()) {
+            if (str2.indexOf(ch) == -1) {
+                result.append(ch);
+            }
+        }
+        return result.toString();
+    }
+}
+-------------------------------------------------------
+12. How to print all permutation of a String?
+import java.util.Scanner;
+
+public class StringPermutations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+        System.out.println("All permutations of the string:");
+        printPermutations("", inputString);
+    }
+    public static void printPermutations(String prefix, String remaining) {
+        int length = remaining.length();
+        if (length == 0) {
+            System.out.println(prefix);
+        } else {
+            for (int i = 0; i < length; i++) {
+                char chosen = remaining.charAt(i);
+                String newRemaining = remaining.substring(0, i) + remaining.substring(i + 1);
+                printPermutations(prefix + chosen, newRemaining);
+            }
+        }
+    }
+}
+-------------------------------------------------------
+13. Check whether the string is Anagram or not?
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class AnagramChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the first string: ");
+        String str1 = scanner.nextLine();
+        System.out.print("Enter the second string: ");
+        String str2 = scanner.nextLine();
+        boolean isAnagram = checkAnagram(str1, str2);
+        if (isAnagram) {
+            System.out.println("The strings are anagrams.");
+        } else {
+            System.out.println("The strings are not anagrams.");
+        }
+    }
+    public static boolean checkAnagram(String str1, String str2) {
+        str1 = str1.replaceAll("\\s", "").toLowerCase();
+        str2 = str2.replaceAll("\\s", "").toLowerCase();
+        char[] charArray1 = str1.toCharArray();
+        char[] charArray2 = str2.toCharArray();
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+        return Arrays.equals(charArray1, charArray2);
+    }
+}
+-------------------------------------------------------
+14. WAP to read name (program) and print letters in ascending order (agmoprr)
+import java.util.Scanner;
+
+public class SortLettersInName {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a name: ");
+        String name = scanner.nextLine();
+        String sortedName = sortLetters(name);
+        System.out.println("Letters in ascending order: " + sortedName);
+    }
+    public static String sortLetters(String str) {
+        str = str.toLowerCase();
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length - 1; i++) {
+            for (int j = i + 1; j < charArray.length; j++) {
+                if (charArray[i] > charArray[j]) {
+                    char temp = charArray[i];
+                    charArray[i] = charArray[j];
+                    charArray[j] = temp;
+                }
+            }
+        }
+        return new String(charArray);
+    }
+}
+-------------------------------------------------------------
+15. WAP to read a number (28156437) and it should print digits order wise(12345678)
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class SortDigitsInNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        long number = scanner.nextLong();
+        long sortedNumber = sortDigits(number);
+        System.out.println("Digits in ascending order: " + sortedNumber);
+    }
+
+    public static long sortDigits(long num) {
+        String numStr = Long.toString(num);
+        char[] charArray = numStr.toCharArray();
+        Arrays.sort(charArray);
+        String sortedStr = new String(charArray);
+        return Long.parseLong(sortedStr);
+    }
+}
+---------------------------------------------------------
+16. Take 10 integers from keyboard using loop and print their average value on the screen
+import java.util.Scanner;
+
+public class CalculateAverage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int total = 0;
+        for (int i = 1; i <= 10; i++) {
+            System.out.print("Enter integer #" + i + ": ");
+            int num = scanner.nextInt();
+            total += num;
+        }
+        double average = (double) total / 10;
+        System.out.println("Average of the 10 integers: " + average);
+    }
+}
+---------------------------------------------------------
+17. Write a program that reads a set of integers, and then prints the sum of the even and odd 
+integers
+import java.util.Scanner;
+
+public class SumOfEvenAndOdd {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of integers: ");
+        int n = scanner.nextInt();
+        int[] numbers = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+        int sumEven = 0;
+        int sumOdd = 0;
+        for (int num : numbers) {
+            if (num % 2 == 0) {
+                sumEven += num;
+            } else {
+                sumOdd += num;
+            }
+        }
+        System.out.println("Sum of even integers: " + sumEven);
+        System.out.println("Sum of odd integers: " + sumOdd);
+    }
+}
+------------------------------------------
+18. Determine and print the number of times the character ‘a’ appears in the input entered by the 
+user.
+import java.util.Scanner;
+
+public class CountCharacterA {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+        int count = countCharacterA(input);
+        System.out.println("The character 'a' appears " + count + " times in the input.");
+    }
+    public static int countCharacterA(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'A') {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+-----------------------------------------------
+19. Java program to check leap year
+import java.util.Scanner;
+
+public class LeapYearChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a year: ");
+        int year = scanner.nextInt();
+        if (isLeapYear(year)) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is not a leap year.");
+        }
+    }
+    public static boolean isLeapYear(int year) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+----------------------------------------------
+20. Java Program to Find the Largest and Smallest Numbers From an Array of Random Numbers
+import java.util.Random;
+
+public class FindMinMaxInArray {
+    public static void main(String[] args) {
+        int[] numbers = generateRandomArray(10, 1, 100); 
+        int min = findMin(numbers);
+        int max = findMax(numbers);
+        System.out.println("Array of Random Numbers:");
+        printArray(numbers);
+        System.out.println("Smallest Number: " + min);
+        System.out.println("Largest Number: " + max);
+    }
+    public static int[] generateRandomArray(int size, int minValue, int maxValue) {
+        int[] array = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            array[i] = random.nextInt(maxValue - minValue + 1) + minValue;
+        }
+        return array;
+    }
+    public static int findMin(int[] array) {
+        int min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+    public static int findMax(int[] array) {
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+-------------------------------------------------------
+21. Printing only not-repeated digits in the array. 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class PrintUniqueDigits {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+        int[] numbers = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+        Map<Integer, Integer> digitCountMap = new HashMap<>();
+        for (int num : numbers) {
+            if (digitCountMap.containsKey(num)) {
+                digitCountMap.put(num, digitCountMap.get(num) + 1);
+            } else {
+                digitCountMap.put(num, 1);
+            }
+        }
+        System.out.println("Unique digits in the array:");
+
+        for (int num : numbers) {
+            if (digitCountMap.get(num) == 1) {
+                System.out.print(num + " ");
+            }
+        }
+    }
+}
+----------------------------------------------------
+22. Printing Second largest no. in the array.
+import java.util.Scanner;
+
+public class SecondLargestNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+        int[] numbers = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+        int firstLargest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+        for (int num : numbers) {
+            if (num > firstLargest) {
+                secondLargest = firstLargest;
+                firstLargest = num;
+            } else if (num > secondLargest && num != firstLargest) {
+                secondLargest = num;
+            }
+        }
+        if (secondLargest == Integer.MIN_VALUE) {
+            System.out.println("There is no second largest number.");
+        } else {
+            System.out.println("The second largest number is: " + secondLargest);
+        }
+    }
+}
+---------------------------------------------------------------------
+23. Sorting the array without using built in sort methods. 4. Copy all the elements from one array to 
+another array. 
+import java.util.Scanner;
+
+public class SortAndCopyArrays {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+        int[] originalArray = new int[n];
+        int[] sortedArray = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            originalArray[i] = scanner.nextInt();
+        }
+        sortedArray = bubbleSort(originalArray);
+        int[] copiedArray = copyArray(originalArray);
+        System.out.println("Original Array:");
+        printArray(originalArray);
+        System.out.println("Sorted Array:");
+        printArray(sortedArray);
+        System.out.println("Copied Array:");
+        printArray(copiedArray);
+    }
+    public static int[] bubbleSort(int[] arr) {
+        int n = arr.length;
+        int[] sortedArray = arr.clone();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (sortedArray[j] > sortedArray[j + 1]) {
+                    int temp = sortedArray[j];
+                    sortedArray[j] = sortedArray[j + 1];
+                    sortedArray[j + 1] = temp;
+                }
+            }
+        }
+        return sortedArray;
+    }
+    public static int[] copyArray(int[] arr) {
+        int[] copiedArray = new int[arr.length];
+        System.arraycopy(arr, 0, copiedArray, 0, arr.length);
+        return copiedArray;
+    }
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+---------------------------------------------
+24. Printing Odd and Even no. from the array. 
+import java.util.Scanner;
+
+public class OddEvenNumbersFromArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] numbers = new int[n];
+
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        System.out.println("Odd numbers in the array:");
+        printOddNumbers(numbers);
+
+        System.out.println("Even numbers in the array:");
+        printEvenNumbers(numbers);
+
+        scanner.close();
+    }
+
+    public static void printOddNumbers(int[] arr) {
+        for (int num : arr) {
+            if (num % 2 != 0) {
+                System.out.print(num + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void printEvenNumbers(int[] arr) {
+        for (int num : arr) {
+            if (num % 2 == 0) {
+                System.out.print(num + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+---------------------------------------------
+25. Merging 2 array into one array.
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class MergeArraysUsingScanner {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the first array: ");
+        int len1 = scanner.nextInt();
+        int[] array1 = new int[len1];
+
+        System.out.println("Enter " + len1 + " integers for the first array:");
+        for (int i = 0; i < len1; i++) {
+            array1[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the number of elements in the second array: ");
+        int len2 = scanner.nextInt();
+        int[] array2 = new int[len2];
+
+        System.out.println("Enter " + len2 + " integers for the second array:");
+        for (int i = 0; i < len2; i++) {
+            array2[i] = scanner.nextInt();
+        }
+
+        int[] mergedArray = mergeArrays(array1, array2);
+
+        System.out.println("First Array: " + Arrays.toString(array1));
+        System.out.println("Second Array: " + Arrays.toString(array2));
+        System.out.println("Merged Array: " + Arrays.toString(mergedArray));
+    }
+
+    public static int[] mergeArrays(int[] arr1, int[] arr2) {
+        int len1 = arr1.length;
+        int len2 = arr2.length;
+        int[] mergedArray = new int[len1 + len2];
+
+        for (int i = 0; i < len1; i++) {
+            mergedArray[i] = arr1[i];
+        }
+
+        for (int i = 0; i < len2; i++) {
+            mergedArray[len1 + i] = arr2[i];
+        }
+
+        return mergedArray;
+    }
+}
+----------------------------------------------------------------------------
+26. Finding Prime Factors of a number
+import java.util.Scanner;
+
+public class PrimeFactors {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a positive integer: ");
+        int num = scanner.nextInt();
+
+        System.out.print("Prime factors of " + num + ": ");
+        findPrimeFactors(num);
+    }
+
+    public static void findPrimeFactors(int n) {
+        while (n % 2 == 0) {
+            System.out.print("2 ");
+            n /= 2;
+        }
+
+        for (int i = 3; i <= Math.sqrt(n); i += 2) {
+            while (n % i == 0) {
+                System.out.print(i + " ");
+                n /= i;
+            }
+        }
+
+        if (n > 2) {
+            System.out.print(n);
+        }
+    }
+}
+-------------------------------------------------------
+27. Find Prime number within a given range or between two numbers.
+import java.util.Scanner;
+
+public class PrimeNumbersInRange {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the lower bound of the range: ");
+        int lowerBound = scanner.nextInt();
+
+        System.out.print("Enter the upper bound of the range: ");
+        int upperBound = scanner.nextInt();
+
+        System.out.println("Prime numbers between " + lowerBound + " and " + upperBound + ":");
+        findPrimeNumbersInRange(lowerBound, upperBound);
+    }
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        if (num <= 3) {
+            return true;
+        }
+        if (num % 2 == 0 || num % 3 == 0) {
+            return false;
+        }
+        for (int i = 5; i * i <= num; i += 6) {
+            if (num % i == 0 || num % (i + 2) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void findPrimeNumbersInRange(int lower, int upper) {
+        for (int i = lower; i <= upper; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+--------------------------------------------------------------
+28. Find Strong number
+import java.util.Scanner;
+
+public class StrongNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+
+        if (isStrongNumber(num)) {
+            System.out.println(num + " is a Strong number.");
+        } else {
+            System.out.println(num + " is not a Strong number.");
+        }
+    }
+
+    public static boolean isStrongNumber(int num) {
+        int originalNum = num;
+        int sum = 0;
+
+        while (num != 0) {
+            int digit = num % 10;
+            sum += factorial(digit);
+            num /= 10;
+        }
+
+        return sum == originalNum;
+    }
+
+    public static int factorial(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+----------------------------------------------------------
+29. Find Perfect number 30. Check Armstrong number.
+
+import java.util.Scanner;
+
+public class PerfectAndArmstrongNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number to check for Perfect number: ");
+        int perfectNumber = scanner.nextInt();
+
+        System.out.print("Enter a number to check for Armstrong number: ");
+        int armstrongNumber = scanner.nextInt();
+
+        if (isPerfectNumber(perfectNumber)) {
+            System.out.println(perfectNumber + " is a Perfect number.");
+        } else {
+            System.out.println(perfectNumber + " is not a Perfect number.");
+        }
+
+        if (isArmstrongNumber(armstrongNumber)) {
+            System.out.println(armstrongNumber + " is an Armstrong number.");
+        } else {
+            System.out.println(armstrongNumber + " is not an Armstrong number.");
+        }
+    }
+
+    public static boolean isPerfectNumber(int num) {
+        if (num <= 0) {
+            return false;
+        }
+
+        int sum = 0;
+        for (int i = 1; i < num; i++) {
+            if (num % i == 0) {
+                sum += i;
+            }
+        }
+        return sum == num;
+    }
+
+    public static boolean isArmstrongNumber(int num) {
+        if (num <= 0) {
+            return false;
+        }
+
+        int originalNum = num;
+        int sum = 0;
+        int numDigits = (int) Math.log10(num) + 1;
+
+        while (num != 0) {
+            int digit = num % 10;
+            sum += Math.pow(digit, numDigits);
+            num /= 10;
+        }
+
+        return sum == originalNum;
+    }
+}
+------------------------------------------------------------------------------------
+31. Armstrong number in given range.
+import java.util.Scanner;
+
+public class ArmstrongNumbersInRange {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the lower bound of the range: ");
+        int lowerBound = scanner.nextInt();
+
+        System.out.print("Enter the upper bound of the range: ");
+        int upperBound = scanner.nextInt();
+
+        System.out.println("Armstrong numbers between " + lowerBound + " and " + upperBound + ":");
+        findArmstrongNumbersInRange(lowerBound, upperBound);
+    }
+
+    public static boolean isArmstrongNumber(int num) {
+        int originalNum = num;
+        int sum = 0;
+        int numDigits = (int) Math.log10(num) + 1;
+
+        while (num != 0) {
+            int digit = num % 10;
+            sum += Math.pow(digit, numDigits);
+            num /= 10;
+        }
+
+        return sum == originalNum;
+    }
+
+    public static void findArmstrongNumbersInRange(int lower, int upper) {
+        for (int i = lower; i <= upper; i++) {
+            if (isArmstrongNumber(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+-------------------------------------------------------------------------------
+32. Calculate the number of digits in an integer
+import java.util.Scanner;
+
+public class CountDigits {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int num = scanner.nextInt();
+
+        int digitCount = countDigits(num);
+
+        System.out.println("Number of digits in " + num + ": " + digitCount);
+    }
+
+    public static int countDigits(int num) {
+        if (num == 0) {
+            return 1; // Special case for num = 0
+        }
+
+        int count = 0;
+        while (num != 0) {
+            num /= 10;
+            count++;
+        }
+
+        return count;
+    }
+}
+-----------------------------------------------------------------------------
+33. Find Smallest and largest number from Array.
+import java.util.Scanner;
+
+public class SmallestAndLargest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        int smallest = findSmallest(array);
+        int largest = findLargest(array);
+
+        System.out.println("Smallest number in the array: " + smallest);
+        System.out.println("Largest number in the array: " + largest);
+    }
+
+    public static int findSmallest(int[] arr) {
+        if (arr.length == 0) {
+            throw new IllegalArgumentException("Array is empty");
+        }
+
+        int smallest = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < smallest) {
+                smallest = arr[i];
+            }
+        }
+        return smallest;
+    }
+
+    public static int findLargest(int[] arr) {
+        if (arr.length == 0) {
+            throw new IllegalArgumentException("Array is empty");
+        }
+
+        int largest = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > largest) {
+                largest = arr[i];
+            }
+        }
+        return largest;
+    }
+}
+----------------------------------------------------------------------------
+34. Find Number of even and odd elements from Array.
+import java.util.Scanner;
+
+public class CountEvenOdd {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        int evenCount = countEven(array);
+        int oddCount = countOdd(array);
+
+        System.out.println("Number of even elements: " + evenCount);
+        System.out.println("Number of odd elements: " + oddCount);
+    }
+
+    public static int countEven(int[] arr) {
+        int count = 0;
+        for (int num : arr) {
+            if (num % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int countOdd(int[] arr) {
+        int count = 0;
+        for (int num : arr) {
+            if (num % 2 != 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+-------------------------------------------------
+35. Rotation of elements of array-left and right
+import java.util.Scanner;
+
+public class ArrayRotation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the number of positions to rotate left: ");
+        int leftShift = scanner.nextInt();
+        rotateLeft(array, leftShift);
+
+        System.out.println("Array after left rotation:");
+        printArray(array);
+
+        System.out.print("Enter the number of positions to rotate right: ");
+        int rightShift = scanner.nextInt();
+        rotateRight(array, rightShift);
+
+        System.out.println("Array after right rotation:");
+        printArray(array);
+
+        scanner.close();
+    }
+
+    public static void rotateLeft(int[] arr, int positions) {
+        int n = arr.length;
+        positions = positions % n;
+
+        reverseArray(arr, 0, positions - 1);
+        reverseArray(arr, positions, n - 1);
+        reverseArray(arr, 0, n - 1);
+    }
+
+    public static void rotateRight(int[] arr, int positions) {
+        int n = arr.length;
+        positions = positions % n;
+
+        reverseArray(arr, 0, n - 1);
+        reverseArray(arr, 0, positions - 1);
+        reverseArray(arr, positions, n - 1);
+    }
+
+    public static void reverseArray(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+-------------------------------------------------------
+36. Find length of string without using function
+import java.util.Scanner;
+
+public class StringLength {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        int length = findStringLength(input);
+
+        System.out.println("Length of the string: " + length);
+    }
+
+    public static int findStringLength(String str) {
+        int length = 0;
+        for (char c : str.toCharArray()) {
+            length++;
+        }
+        return length;
+    }
+}
+------------------------------------------------------------------
+37. Remove Spaces from string.
+import java.util.Scanner;
+
+public class RemoveSpaces {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string with spaces: ");
+        String input = scanner.nextLine();
+
+        String stringWithoutSpaces = removeSpaces(input);
+
+        System.out.println("String without spaces: " + stringWithoutSpaces);
+    }
+
+    public static String removeSpaces(String str) {
+        return str.replaceAll(" ", "");
+    }
+}
+--------------------------------------------------------------------
+38. Check if given string is Palindrome or not.
+import java.util.Scanner;
+
+public class PalindromeChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        boolean isPalindrome = checkPalindrome(input);
+
+        if (isPalindrome) {
+            System.out.println("The string is a palindrome.");
+        } else {
+            System.out.println("The string is not a palindrome.");
+        }
+    }
+
+    public static boolean checkPalindrome(String str) {
+        str = str.replaceAll(" ", "").toLowerCase();
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+--------------------------------------------------------------------
+39. Capitalize the first and last character of each word of String.
+import java.util.Scanner;
+
+public class CapitalizeFirstAndLast {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        String modifiedString = capitalizeFirstAndLast(input);
+
+        System.out.println("Modified string: " + modifiedString);
+}
+    public static String capitalizeFirstAndLast(String str) {
+        // Split the input string into words
+        String[] words = str.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            if (word.length() > 0) {
+                char firstChar = Character.toUpperCase(word.charAt(0));
+                char lastChar = Character.toUpperCase(word.charAt(word.length() - 1));
+                result.append(firstChar).append(word.substring(1, word.length() - 1)).append(lastChar);
+            }
+            result.append(" ");
+        }
+        return result.toString().trim();
+    }
+}
+-----------------------------------------
+40. Find a greatest pair from Array
+import java.util.Scanner;
+
+public class GreatestPairInArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        int[] greatestPair = findGreatestPair(array);
+
+        System.out.println("Greatest Pair in the Array: [" + greatestPair[0] + ", " + greatestPair[1] + "]");
+    }
+
+    public static int[] findGreatestPair(int[] arr) {
+        if (arr.length < 2) {
+            return new int[0];
+        }
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num > secondLargest && num != largest) {
+                secondLargest = num;
+            }
+        }
+
+        return new int[] { largest, secondLargest };
+    }
+}
+----------------------------------------------------------
+41. Write a program in Java to display the pattern like right angle triangle with a number.
+import java.util.Scanner;
+
+public class RightAngleTrianglePattern {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows: ");
+        int rows = scanner.nextInt();
+
+        // Outer loop for rows
+        for (int i = 1; i <= rows; i++) {
+            // Inner loop for columns
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println(); // Move to the next line after each row
+        }
+    }
+}
+-------------------------------------------------------------
+42. Write a Java program to check whether the first two characters present at the end 
+of a given string
+import java.util.Scanner;
+
+public class CheckFirstTwoCharactersAtEnd {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        boolean result = checkFirstTwoCharactersAtEnd(input);
+
+        if (result) {
+            System.out.println("The first two characters are present at the end of the string.");
+        } else {
+            System.out.println("The first two characters are not present at the end of the string.");
+        }
+    }
+
+    public static boolean checkFirstTwoCharactersAtEnd(String str) {
+        int length = str.length();
+
+        if (length < 2) {
+            return false;
+        }
+        String firstTwo = str.substring(0, 2);
+        String lastTwo = str.substring(length - 2);
+        return firstTwo.equals(lastTwo);
+    }
+}
+-------------------------------------------------------
+43. Write a Java program that keeps a number from the user and generates an integer between 1 
+and 7 and displays the name of the weekday.
+import java.util.Scanner;
+import java.util.Random;
+
+public class WeekdayGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int userNumber = scanner.nextInt();
+
+        if (userNumber >= 1 && userNumber <= 7) {
+            String weekday = generateWeekday(userNumber);
+            System.out.println("Weekday for " + userNumber + " is " + weekday);
+        } else {
+            System.out.println("Invalid input. Please enter a number between 1 and 7.");
+        }
+    }
+
+    public static String generateWeekday(int number) {
+        String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        return weekdays[number - 1];
+    }
+}
+------------------------------------------------------------------------------
+44. Write a Java program that checks if 2 array contains the same element
+import java.util.Arrays;
+
+public class ArraysContainSameElements {
+    public static void main(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {3, 5, 1, 4, 2};
+
+        boolean result = arraysContainSameElements(array1, array2);
+
+        if (result) {
+            System.out.println("Both arrays contain the same elements.");
+        } else {
+            System.out.println("Both arrays do not contain the same elements.");
+        }
+    }
+
+    public static boolean arraysContainSameElements(int[] arr1, int[] arr2) {
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+-----------------------------------------------------------------------------
+45. How do you shuffle an array in Java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class ShuffleArray {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        Collections.shuffle(list);
+        Integer[] shuffledArray = list.toArray(new Integer[0]);
+        for (Integer num : shuffledArray) {
+            System.out.print(num + " ");
+        }
+    }
+}
+-------------------------------------------------------------------
+46. Find the array pairs whose sum is equal to the given number.
+import java.util.HashMap;
+
+public class FindPairsWithSum {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6};
+        int targetSum = 7;
+
+        findPairsWithSum(array, targetSum);
+    }
+
+    public static void findPairsWithSum(int[] arr, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : arr) {
+            int complement = target - num;
+
+            if (map.containsKey(complement)) {
+                System.out.println("Pair found: " + num + ", " + complement);
+            }
+
+            map.put(num, 1);
+        }
+    }
+}
+---------------------------------------------------------------------
+47. Write a Java program to divide a string in n equal parts.
+import java.util.Scanner;
+
+public class DivideStringIntoParts {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        System.out.print("Enter the number of equal parts (n): ");
+        int n = scanner.nextInt();
+
+        divideString(inputString, n);
+    }
+
+    public static void divideString(String str, int n) {
+        int length = str.length();
+        int partLength = length / n;
+        int startIndex = 0;
+
+        System.out.println("Dividing the string into " + n + " equal parts:");
+
+        for (int i = 0; i < n; i++) {
+            int endIndex = startIndex + partLength;
+
+            if (i == n - 1) {
+                endIndex = length;
+            }
+
+            String part = str.substring(startIndex, endIndex);
+            System.out.println("Part " + (i + 1) + ": " + part);
+
+            startIndex = endIndex;
+        }
+    }
+}
+---------------------------------------------------------------------
+48. Write a Java program to count and print all the duplicates in the input string
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CountAndPrintDuplicates {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        countAndPrintDuplicates(inputString);
+    }
+
+    public static void countAndPrintDuplicates(String str) {
+        Map<Character, Integer> charCountMap = new HashMap<>();
+        for (char ch : str.toCharArray()) {
+            charCountMap.put(ch, charCountMap.getOrDefault(ch, 0) + 1);
+        }
+        System.out.println("Duplicate characters in the string:");
+        for (Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey() + ": " + entry.getValue() + " times");
+            }
+        }
+    }
+}
+--------------------------------------------------------------
+49. Write a Java program to check whether a given string starts with the contents of another string
+import java.util.Scanner;
+
+public class StartsWithSubstring {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the main string: ");
+        String mainString = scanner.nextLine();
+
+        System.out.print("Enter the substring to check for: ");
+        String substring = scanner.nextLine();
+
+        boolean startsWithSubstring = checkStartsWithSubstring(mainString, substring);
+
+        if (startsWithSubstring) {
+            System.out.println("The main string starts with the substring.");
+        } else {
+            System.out.println("The main string does not start with the substring.");
+        }
+    }
+
+    public static boolean checkStartsWithSubstring(String mainStr, String substr) {
+        return mainStr.startsWith(substr);
+    }
+}
+----------------------------------------------------------------------------
+50. WAP to print Diamond pattern.
+import java.util.Scanner;
+
+public class DiamondPattern {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows for the diamond pattern: ");
+        int numRows = scanner.nextInt();
+
+        printDiamondPattern(numRows);
+    }
+
+    public static void printDiamondPattern(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
+    }
+}
+-------------------------------------------------------------
+51. WAP to print Pyramid of Character.
+import java.util.Scanner;
+
+public class CharacterPyramid {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows for the character pyramid: ");
+        int numRows = scanner.nextInt();
+
+        printCharacterPyramid(numRows);
+    }
+
+    public static void printCharacterPyramid(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (char ch = 'A'; ch <= 'A' + i - 1; ch++) {
+                System.out.print(ch);
+            }
+            for (char ch = (char) ('A' + i - 2); ch >= 'A'; ch--) {
+                System.out.print(ch);
+            }
+
+            System.out.println();
+        }
+    }
+}
+----------------------------------------------------------------
+52. WAP to print Pyramid of Number.
+public class NumberPyramid {
+    public static void main(String[] args) {
+        int numRows = 5;
+
+        printNumberPyramid(numRows);
+    }
+
+    public static void printNumberPyramid(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print(k);
+            }
+            for (int l = i - 1; l >= 1; l--) {
+                System.out.print(l);
+            }
+
+            System.out.println();
+        }
+    }
+}
+-------------------------------------------------------------------
+53. parallelogram pattern
+import java.util.Scanner;
+public class Pattern1 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter row and col");
+		int row = sc.nextInt();
+		int col = sc.nextInt();
+		
+		for (int i = 1; i <= row; i++) {
+			for (int j = 1; j <= i; j++) 
+			    	System.out.print(" ");
+			for (int j = 1; j <= col; j++) 
+				System.out.print("*");
+			System.out.println();
+		}
+
+	}
+
+}
+-------------------------------------------------------------
+54. Hollow triangle pattern
+import java.util.*; 
+  
+public class Main { 
+    public static void printPattern(int n) 
+    { 
+        int i, j, k; 
+        for (i = 1; i <= n; i++) { 
+            for (j = i; j < n; j++) { 
+                System.out.print(" "); 
+            }
+            for (k = 1; k <= (2 * i - 1); k++) { 
+                if (k == 1 || i == n || k == (2 * i - 1)) { 
+                    System.out.print("*"); 
+                } 
+                else { 
+                    System.out.print(" "); 
+                } 
+            } 
+            System.out.println(""); 
+        } 
+    } 
+  
+    public static void main(String args[]) 
+    { 
+        int n = 6; 
+        printPattern(n); 
+    } 
+}
+-----------------------------------------
+55. Diamond star 
+import java.util.*; 
+  
+public class Main { 
+    public static void printPattern(int n) 
+    { 
+        int i, j; 
+        int num = 1; 
+        for (i = 1; i <= n; i++) { 
+            for (j = 1; j <= n - i; j++) { 
+                System.out.print(" "); 
+            } 
+            for (j = 1; j <= 2 * i - 1; j++) { 
+                System.out.print("*"); 
+            } 
+            System.out.println(); 
+        } 
+        for (i = n-1; i >= 1; i--) { 
+            for (j = 1; j <= n - i; j++) { 
+                System.out.print(" "); 
+            } 
+            for (j = 1; j <= 2 * i - 1; j++) { 
+                System.out.print("*"); 
+            } 
+            System.out.println(); 
+        } 
+    } 
+    public static void main(String args[]) 
+    { 
+        int n = 6; 
+        printPattern(n); 
+    } 
+}
+----------------------------------------------------------------------
+
+
