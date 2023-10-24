@@ -1,0 +1,238 @@
+1. Singleton class
+public class Singleton {
+    private static Singleton instance;
+    private Singleton() {
+    }
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    public void doSomething() {
+        System.out.println("Singleton class is doing something.");
+    }
+
+    public static void main(String[] args) {
+        Singleton s = Singleton.getInstance();
+        s.doSomething();
+    }
+}
+----------------------------------------------------------------------------
+2. Total salary
+class Employee {
+   String name;
+   int employeeId;
+   double baseSalary;
+
+    public Employee(String name, int employeeId, double baseSalary) {
+        this.name = name;
+        this.employeeId = employeeId;
+        this.baseSalary = baseSalary;
+    }
+
+    public double calculateTotalSalary() {
+        return baseSalary;
+    }
+}
+
+class Manager extends Employee {
+    double incentive;
+
+    public Manager(String name, int employeeId, double baseSalary, double incentive) {
+        super(name, employeeId, baseSalary);
+        this.incentive = incentive;
+    }
+    public double calculateTotalSalary() {
+        return super.calculateTotalSalary() + incentive;
+    }
+}
+
+class Labour extends Employee {
+   double overtime;
+
+    public Labour(String name, int employeeId, double baseSalary, double overtime) {
+        super(name, employeeId, baseSalary);
+        this.overtime = overtime;
+    }
+    public double calculateTotalSalary() {
+        return super.calculateTotalSalary() + overtime;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Employee employee1 = new Manager("Manager 1", 1, 50000, 10000);
+        Employee employee2 = new Labour("Labour 1", 2, 30000, 2000);
+        Employee employee3 = new Manager("Manager 2", 3, 55000, 12000);
+        double totalSalary = calculateTotalSalaryOfEmployees(employee1, employee2, employee3);
+        System.out.println("Total Salary of All Employees: " + totalSalary);
+    }
+
+    public static double calculateTotalSalaryOfEmployees(Employee... employees) {
+        double totalSalary = 0.0;
+        for (Employee employee : employees) {
+            totalSalary += employee.calculateTotalSalary();
+        }
+        return totalSalary;
+    }
+}
+--------------------------------------------------------------
+3. Savings
+class Account {
+    protected double balance;
+
+    public Account(double balance) {
+        this.balance = balance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void showBalance() {
+        System.out.println("Balance: " + balance);
+    }
+}
+
+class SavingsAccount extends Account {
+    private double fixedDeposit;
+
+    public SavingsAccount(double balance, double fixedDeposit) {
+        super(balance);
+        this.fixedDeposit = fixedDeposit;
+    }
+    public double getBalance() {
+        return super.getBalance() + fixedDeposit;
+    }
+    public void showBalance() {
+        System.out.println("Savings Account Balance: " + getBalance());
+    }
+}
+
+class CurrentAccount extends Account {
+    private double cashCredit;
+
+    public CurrentAccount(double balance, double cashCredit) {
+        super(balance);
+        this.cashCredit = cashCredit;
+    }
+
+    @Override
+    public double getBalance() {
+        return super.getBalance() + cashCredit;
+    }
+
+    @Override
+    public void showBalance() {
+        System.out.println("Current Account Balance: " + getBalance());
+    }
+}
+
+public class Bank {
+    public static void main(String[] args) {
+        Account[] accounts = new Account[3];
+        accounts[0] = new SavingsAccount(50000, 10000);
+        accounts[1] = new CurrentAccount(30000, 2000);
+        accounts[2] = new SavingsAccount(75000, 15000);
+
+        double totalCash = calculateTotalCash(accounts);
+        System.out.println("Total Cash in the Bank: " + totalCash);
+    }
+
+    public static double calculateTotalCash(Account[] accounts) {
+        double totalCash = 0.0;
+        for (Account account : accounts) {
+            totalCash += account.getBalance();
+        }
+        return totalCash;
+    }
+}
+------------------------------------------------------------------------
+4. Abstract class
+abstract class AbstractClass {
+    public abstract void abstractMethod();
+    public void concreteMethod() {
+        System.out.println("This is a concrete method.");
+    }
+}
+class SubClass extends AbstractClass {
+    public void abstractMethod() {
+        System.out.println("Overridden abstractMethod in SubClass.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        
+        SubClass subObj = new SubClass();
+        subObj.concreteMethod();
+        subObj.abstractMethod();
+    }
+}
+-----------------------------------------------------
+5.Draw 
+abstract class Shape {
+    abstract void draw();
+}
+
+class Line extends Shape {
+    void draw() {
+        System.out.println("Drawing a Line");
+    }
+}
+
+class Rectangle extends Shape {
+    void draw() {
+        System.out.println("Drawing a Rectangle");
+    }
+}
+
+class Cube extends Shape {
+    void draw() {
+        System.out.println("Drawing a Cube");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape[] shapes = new Shape[3];
+        shapes[0] = new Line();
+        shapes[1] = new Rectangle();
+        shapes[2] = new Cube();
+
+        for (Shape shape : shapes) {
+            shape.draw();
+        }
+    }
+}
+---------------------------------------------------------------------------
+6. Persistence
+abstract class Persistence {
+    abstract void persist();
+}
+class FilePersistence extends Persistence {
+    @Override
+    void persist() {
+        System.out.println("Data saved to a file.");
+    }
+}
+class DatabasePersistence extends Persistence {
+    @Override
+    void persist() {
+        System.out.println("Data saved to a database.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Persistence persistence;
+        boolean useFilePersistence = true;
+
+        if (useFilePersistence) {
+            persistence = new FilePersistence();
+        } else {
+            persistence = new DatabasePersistence();
+        }
+        persistence.persist();
+    }
+}

@@ -1,0 +1,99 @@
+1. Length of string
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello World";
+        int length = str.length();
+
+        System.out.println("The length of the string is: " + length);
+    }
+}
+
+Without string length
+
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello World";
+        int length = 0;
+        for (char c : str.toCharArray()) {
+            length++;
+        }
+        System.out.println("The length of the string is: " + length);
+    }
+}
+----------------------------------------------------------------------
+2. Join strings
+public class StringJoinExample {
+    public static void main(String[] args) {
+        String str1 = "Hello, ";
+        String str2 = "How are you?";
+        String result = str1.concat(str2);
+        System.out.println("Joined String: " + result);
+    }
+}
+------------------------------------------------------------------
+3. String methods
+public class Main {
+    public static void main(String[] args) {
+        String originalString = "java string pool refers to collection of strings which are stored in heap memory";
+        System.out.println("a. Lowercase: " + originalString.toLowerCase());
+        System.out.println("b. Uppercase: " + originalString.toUpperCase());
+        String replacedString = originalString.replace('a', '$');
+        System.out.println("c. Replaced: " + replacedString);
+        boolean contain = originalString.contains("collection");
+        System.out.println("d. Contains 'collection': " + contain);
+        String comparisonString = "java string pool refers to collection of strings which are stored in heap memory";
+        boolean stringsMatch = originalString.equals(comparisonString);
+        System.out.println("e. Strings Match: " + stringsMatch);
+        if (!stringsMatch) {
+            boolean stringsEqual = originalString.contentEquals(comparisonString);
+            System.out.println("f. Strings Equal: " + stringsEqual);
+        }
+    }
+}
+------------------------------------------------------------------------
+String Buffer
+1. Append
+public class Main {
+    public static void main(String[] args) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("StringBuffer");
+        stringBuffer.append(" is a peer class of String");
+        stringBuffer.append(" that provides much of ");
+        stringBuffer.append("the functionality of strings");
+        String result = stringBuffer.toString();
+        System.out.println(result);
+    }
+}
+----------------------------------------------------------------
+2. Insert at specified position
+public class Main {
+    public static void main(String[] args) {
+        String originalString = "It is used to _ at the specified index position";
+        String insertString = "insert text";
+        int index = originalString.indexOf("_"); 
+        if (index != -1) {
+            StringBuilder stringBuilder = new StringBuilder(originalString);
+            stringBuilder.insert(index, insertString);
+            String result = stringBuilder.toString();
+            System.out.println(result);
+        } else {
+            System.out.println("The substring 'at' was not found in the original string.");
+        }
+    }
+}
+----------------------------------------------------------
+3. Reverse
+public class Main {
+    public static void main(String[] args) {
+        String originalString = "This method returns the reversed object on which it was called";
+        StringBuffer stringBuffer = new StringBuffer(originalString);
+        stringBuffer.reverse();
+        String reversedString = stringBuffer.toString();
+        System.out.println("Original String: " + originalString);
+        System.out.println("Reversed String: " + reversedString);
+    }
+}
+------------------------------------------------------------
+
+
+
